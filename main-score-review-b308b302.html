@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>比分网 · 再次回到这里</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f9f7f5;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #1f1e1b;
+      line-height: 1.7;
+      padding: 0 1.2rem;
+    }
+
+    .page-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2.8rem 0 3.6rem;
+    }
+
+    /* --- 顶部导航 --- */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #e5e0d9;
+      margin-bottom: 2.6rem;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
+    }
+
+    .top-nav .logo {
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #2c2a26;
+    }
+
+    .top-nav .logo a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .top-nav .logo a:hover {
+      color: #b3773a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #5f5b55;
+      transition: color 0.2s;
+      border-bottom: 1px dotted transparent;
+    }
+
+    .nav-links a:hover {
+      color: #b3773a;
+      border-bottom-color: #b3773a;
+    }
+
+    /* --- Hero --- */
+    .hero {
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 450;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      color: #1a1815;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #4e4a44;
+      max-width: 600px;
+    }
+
+    .hero p a {
+      color: #8b6b47;
+      text-decoration: underline 1.5px dotted #c2b2a0;
+      text-underline-offset: 4px;
+      font-weight: 500;
+    }
+
+    .hero p a:hover {
+      text-decoration-color: #b3773a;
+      color: #b3773a;
+    }
+
+    /* --- 三个场景模块 (卡片) --- */
+    .scenes {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      margin-bottom: 3.4rem;
+    }
+
+    .scene-card {
+      background: #ffffff;
+      padding: 1.6rem 2rem 1.8rem;
+      border-radius: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid #ede8e0;
+      transition: box-shadow 0.2s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04), 0 8px 20px rgba(0,0,0,0.02);
+    }
+
+    .scene-card h3 {
+      font-size: 1.25rem;
+      font-weight: 460;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+      color: #26231f;
+    }
+
+    .scene-card p {
+      color: #4e4942;
+      font-size: 0.98rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .scene-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .scene-card .small-tag {
+      display: inline-block;
+      background: #f2ede6;
+      padding: 0.1rem 0.6rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #6b5f50;
+      margin-right: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    /* --- 常见说明 (FAQ摘要风格) --- */
+    .brief-notes {
+      margin-top: 0.6rem;
+      margin-bottom: 2.8rem;
+      border-left: 3px solid #d9cfc0;
+      padding-left: 1.4rem;
+    }
+
+    .brief-notes h2 {
+      font-size: 1.3rem;
+      font-weight: 430;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.2rem;
+      color: #2b2722;
+    }
+
+    .note-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .note-item strong {
+      font-weight: 500;
+      color: #2b2722;
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
+    }
+
+    .note-item p {
+      color: #524d46;
+      font-size: 0.96rem;
+      margin: 0;
+    }
+
+    .note-item a {
+      color: #7b6248;
+      text-decoration: underline 1.2px solid #d3c6b6;
+      text-underline-offset: 3px;
+    }
+
+    .note-item a:hover {
+      color: #b3773a;
+      text-decoration-color: #b3773a;
+    }
+
+    /* --- 底部 --- */
+    .footer-note {
+      border-top: 1px solid #e2dbd2;
+      padding-top: 1.4rem;
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      color: #7f776c;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .footer-note a {
+      color: #7f776c;
+      text-decoration: none;
+      border-bottom: 1px solid #d5cdc0;
+    }
+
+    .footer-note a:hover {
+      color: #b3773a;
+      border-bottom-color: #b3773a;
+    }
+
+    /* --- 响应式 --- */
+    @media (max-width: 500px) {
+      .page-wrap {
+        padding: 1.8rem 0 2.8rem;
+      }
+
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .scene-card {
+        padding: 1.2rem 1.2rem 1.4rem;
+      }
+
+      .brief-notes {
+        padding-left: 1rem;
+      }
+    }
+
+    @media (min-width: 800px) {
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+      <span class="logo">
+        <a href="https://main-score.com">比分网</a>
+      </span>
+      <span class="nav-links">
+        <a href="https://main-score.com">比分网</a>
+        <a href="#">实时</a>
+        <a href="#">收藏</a>
+        <a href="#">说明</a>
+      </span>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>再次回到这里，<br>比分的习惯一直没变</h1>
+      <p>
+        有时候只是顺手打开 <a href="https://main-score.com">比分网</a>，
+        看看今天哪场比赛有了变化，哪些比分还在僵持。
+        没有太多理由，就是习惯了。
+      </p>
+    </section>
+
+    <!-- 三个场景模块（轻量卡片） -->
+    <div class="scenes">
+      <div class="scene-card">
+        <h3><span class="small-tag">场景一</span> 收藏，是另一种记忆</h3>
+        <p>
+          页面右上角的小星标，不是什么复杂功能。看见一场想留意的比赛，
+          点一下，它就留在了收藏列表里。下次再打开 <a href="https://main-score.com" style="color:#7b6248;text-decoration:underline 1.2px solid #d3c6b6;text-underline-offset:3px;">比分网</a>，
+          不用重新翻找，直接进入自己关注的那几场。
+        </p>
+        <p style="color:#7b756c; font-size:0.9rem; margin-top:0.4rem;">
+          收藏夹不会提醒你，但你知道它在那里。
+        </p>
+      </div>
+
+      <div class="scene-card">
+        <h3><span class="small-tag">场景二</span> 持续关注，哪怕只是看一眼</h3>
+        <p>
+          比赛日不止一天。有些系列赛要打好几天，有些杯赛从小组到淘汰赛
+          跨度好几周。不需要时刻盯着，每天回来扫一眼比分的变化，
+          就大概知道局势走到哪一步了。
+        </p>
+        <p style="color:#7b756c; font-size:0.9rem; margin-top:0.4rem;">
+          比分网帮人省掉的，是反复搜索的麻烦。
+        </p>
+      </div>
+
+      <div class="scene-card">
+        <h3><span class="small-tag">场景三</span> 打开就是上一次看的位置</h3>
+        <p>
+          没有花哨的引导页，也没有弹窗询问是否刷新。
+          页面干净得像昨天离开时一样——最近浏览过的联赛、之前点开的比赛，
+          都还在那里。这种连续感，让人很自然就留了下来。
+        </p>
+        <p style="color:#7b756c; font-size:0.9rem; margin-top:0.4rem;">
+          不太像工具，更像是桌上摊开的一本旧记录本。
+        </p>
+      </div>
+    </div>
+
+    <!-- 常见说明（贴近FAQ摘要，但语气更轻） -->
+    <div class="brief-notes">
+      <h2>一些你可能想问的</h2>
+
+      <div class="note-item">
+        <strong>怎样找到之前收藏的比赛？</strong>
+        <p>
+          登录后（如果你注册过），收藏标志会同步。如果只是临时使用，
+          浏览器的书签同样好用——把 <a href="https://main-score.com">比分网</a>
+          加到书签栏，下次点击就回来了。
+        </p>
+      </div>
+
+      <div class="note-item">
+        <strong>比分更新快吗？</strong>
+        <p>
+          页面数据来自持续的信息流，通常延迟在分钟级以内。
+          对于大部分日常关注来说，已经足够及时。如果需要秒级感知，
+          可以配合页面内的自动刷新间隔使用。
+        </p>
+      </div>
+
+      <div class="note-item">
+        <strong>为什么界面这么简单？</strong>
+        <p>
+          因为核心就是比分和赛程。去掉多余装饰之后，
+          每次打开都更直接一些。如果你希望看到更多统计数据或历史记录，
+          目前版本还在逐渐补充中。
+        </p>
+      </div>
+    </div>
+
+    <!-- 底部提示（轻量） -->
+    <div class="footer-note">
+      <span>© 比分网 · 持续更新中</span>
+      <span><a href="https://main-score.com">比分网</a></span>
+    </div>
+  </div>
+</body>
+</html>
